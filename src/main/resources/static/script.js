@@ -90,7 +90,6 @@ if (feil === false){
     }
     document.getElementById("utFelt").innerHTML = ut;
 
-
 }
 function slett(){
     document.getElementById("utFelt").innerHTML = "";
