@@ -7,7 +7,7 @@
 <script src="script.js"></script>
 <body>
 <h1>Oblig 1</h1>
-<form>
+
     <label for="film">Velg film: </label>
     <select id="film" name="film">
         <option></option>
@@ -15,27 +15,34 @@
         <option>Cars 4</option>
         <option>Det regner kjøttboller</option>
         <option>Titanic</option>
-    </select><br>
+    </select>
+    <p id="filmError" style="color: red"></p><br>
 
     <label for="antall">Antall: </label>
-    <input type="number" id="antall" pattern="" name="antall"><br>
+    <input type="number" id="antall" name="antall">
+    <p id="antallError" style="color: red"></p><br>
 
     <label for="fornavn">Fornavn: </label>
-    <input type="text" id="fornavn" pattern="" name="fornavn"><br>
+    <input type="text" id="fornavn" name="fornavn">
+    <p id="fornavnError" style="color: red"></p><br>
 
     <label for="etternavn">Etternavn: </label>
-    <input type="text" id="etternavn" pattern="" name="etternavn"><br>
+    <input type="text" id="etternavn" name="etternavn">
+    <p id="etternavnError" style="color: red"></p><br>
 
     <label for="telefon">Telefonnr: </label>
-    <input type="number" id="telefon" pattern="[0-9]{8}" name="telefon"><br>
+    <input type="number" id="telefon" name="telefon">
+    <p id="telefonError" style="color: red"></p><br>
 
     <label for="epost">Epost: </label>
-    <input type="text" id="epost" name="epost"><br>
-</form>
-<button type="submit" onclick="kjøp()">Kjøp Billett</button><br><br>
+    <input type="text" id="epost" name="epost">
+    <p id="epostError" style="color: red"></p><br>
+
+<button onclick="kjøp()">Kjøp Billett</button><br><br>
 
 <h2>Alle billetter: </h2>
-<p id="utFelt"></p><br><br>
+<p id="utFelt"></p>
+<br><br>
 
 <button onclick="slett()">Slett alle billetter</button>
 

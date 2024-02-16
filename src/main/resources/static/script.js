@@ -1,42 +1,87 @@
 const billetter = [];
 function kjøp(){
     const film = document.getElementById("film").value;
-    const antall = document.getElementById("antall").value;
+    const antall = Number(document.getElementById("antall").value);
     const fornavn = document.getElementById("fornavn").value;
     const etternavn = document.getElementById("etternavn").value;
     const telefon = document.getElementById("telefon").value;
     const epost = document.getElementById("epost").value;
-    let billett = [];
     let ut = "";
 
-    if (!telefon){
-        alert("Feil telefon nummer!");
+    const navnValidering = /^[A-Za-z]+$/;
+    const telefonValidering = /^[0-9]+$/;
+    const epostValidering = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;
+    /*  "epostRegex" er hentet fra:
+        https://emaillistvalidation.com/blog/email-validation-in-javascript-using-regular-expressions-the-ultimate-guide/
+    */
+
+    let feil = false;
+
+    if (film === ""){
+        document.getElementById("filmError").innerHTML = "Feil med film";
+        feil = true;
+    }
+    else{
+        document.getElementById("filmError").innerHTML = "";
     }
 
-    switch (film){
-        case "Pirates of the Caribbean" :{
-            billett = {film,antall,fornavn,etternavn,telefon,epost};
-            billetter.push(billett);
-        }
-            break;
-        case "Cars 4" :{
-            billett = {film,antall,fornavn,etternavn,telefon,epost};
-            billetter.push(billett);
-        }
-            break;
-        case "Det regner kjøttboller" :{
-            billett = {film,antall,fornavn,etternavn,telefon,epost};
-            billetter.push(billett);
-        }
-            break;
-        case "Titanic" :{
-            billett = {film,antall,fornavn,etternavn,telefon,epost};
-            billetter.push(billett);
-        }
-            break;
-        default: alert("Du må velge film");
-            break;
+    if (antall < 0){
+        document.getElementById("antallError").innerHTML = "Feil med antall";
+        feil = true;
     }
+    else{
+        document.getElementById("antallError").innerHTML = "";
+    }
+
+    if (!telefonValidering.test(telefon)){
+        document.getElementById("telefonError").innerHTML = "Feil med telefon nummer";
+        feil = true;
+    }
+    else{
+        document.getElementById("telefonError").innerHTML = "";
+    }
+
+    if (!navnValidering.test(fornavn)){
+        document.getElementById("fornavnError").innerHTML = "Feil med navn";
+        feil = true;
+    }
+    else{
+        document.getElementById("fornavnError").innerHTML = "";
+    }
+
+    if (!navnValidering.test(etternavn)){
+        document.getElementById("etternavnError").innerHTML = "Feil med navn";
+        feil = true;
+    }
+    else{
+        document.getElementById("etternavnError").innerHTML = "";
+    }
+
+    if (!epostValidering.test(epost)){
+        document.getElementById("epostError").innerHTML = "Feil med epost";
+        feil = true;
+    }
+    else{
+        document.getElementById("epostError").innerHTML = "";
+    }
+
+if (feil === false){
+    let billett =
+            {film,
+            antall,
+            fornavn,
+            etternavn,
+            telefon,
+            epost};
+    billetter.push(billett);
+
+    document.getElementById("film").value = "";
+    document.getElementById("antall").value = "";
+    document.getElementById("fornavn").value = "";
+    document.getElementById("etternavn").value = "";
+    document.getElementById("telefon").value = "";
+    document.getElementById("epost").value = "";
+}
 
     for (let billett of billetter){
         ut += "Film: " + billett.film + "<br>" + "Antall: " + billett.antall + "<br>" + "Fornavn: " + billett.fornavn +
@@ -44,8 +89,8 @@ function kjøp(){
             billett.epost + "<br><br>";
     }
     document.getElementById("utFelt").innerHTML = ut;
-    // Her må man ha input validation
-    // Her trenger jeg en funsjon som clearer alle input fieldene etter du har submitted
+
+
 }
 function slett(){
     document.getElementById("utFelt").innerHTML = "";
